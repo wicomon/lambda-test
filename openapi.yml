@@ -1,0 +1,157 @@
+openapi: '3.0.2'
+info:
+  title: Lambda-movies-starwars-API
+  description: Documentation for functions
+  version: 1.0.0
+paths:
+  /:
+    get:
+      summary: Get endpoints
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /movies:
+    post:
+      summary: Create a new movie
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                titulo:
+                  type: string
+                  example: "Star Wars: A New Hope"
+                director:
+                  type: string
+                  example: "George Lucas"
+                anio:
+                  type: string
+                  example: "1990"
+      responses:
+        '200':
+          description: Movie created successfully
+    get:
+      summary: Get all movies
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      example: "1"
+                    title:
+                      type: string
+                      example: "Star Wars: A New Hope"
+                    director:
+                      type: string
+                      example: "George Lucas"
+                    anio:
+                      type: string
+                      example: "1990"
+
+  /peliculas:
+    get:
+      summary: Get all films (Spanish)
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+
+  /personajes:
+    get:
+      summary: Get all characters
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+
+  /especies:
+    get:
+      summary: Get all species
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+
+  /movies/{id}:
+    get:
+      summary: Get a movie by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the movie to retrieve
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+    put:
+      summary: Update a movie by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the movie to update
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: "Star Wars: A New Hope"
+                director:
+                  type: string
+                  example: "George Lucas"
+      responses:
+        '200':
+          description: Movie updated successfully
+    delete:
+      summary: Delete a movie by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the movie to delete
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Movie deleted successfully
