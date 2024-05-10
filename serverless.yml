@@ -7,7 +7,7 @@ provider:
   region: 'us-east-2'
   iamRoleStatements:
     - Effect: Allow
-      Action: 
+      Action:
         - dynamodb:*
       Resource:
         - arn:aws:dynamodb:us-east-2:512345104267:table/MoviesTable
@@ -25,6 +25,30 @@ functions:
       - httpApi:
           path: /movies
           method: post
+  getMovies:
+    handler: src/getMovies.getMovies
+    events:
+      - httpApi:
+          path: /movies
+          method: get
+  getMovie:
+    handler: src/getMovie.getMovie
+    events:
+      - httpApi:
+          path: /movies/{id}
+          method: get
+  updateMovie:
+    handler: src/updateMovie.updateMovie
+    events:
+      - httpApi:
+          path: /movies/{id}
+          method: put
+  deleteMovie:
+    handler: src/deleteMovie.deleteMovie
+    events:
+      - httpApi:
+          path: /movies/{id}
+          method: delete
 
 resources:
   Resources:
