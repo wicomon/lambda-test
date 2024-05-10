@@ -44,18 +44,19 @@ const getCharacters = async (event) => {
       };
     }
     return {
-      status: 200,
+      status: 404,
       body: {
         personajes: [],
       },
     };
   } catch (error) {
-    console.log(error);
     return {
       statusCode: 500,
-      body: {
-        error: '12',
-      },
+      body: JSON.stringify({
+          error: {
+              message: 'Error'
+          }
+      })
     };
   }
 };

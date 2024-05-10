@@ -53,12 +53,13 @@ const getSpecies = async (event) => {
       },
     };
   } catch (error) {
-    console.log(error);
     return {
       statusCode: 500,
-      body: {
-        error: '12',
-      },
+      body: JSON.stringify({
+          error: {
+              message: 'Error'
+          }
+      })
     };
   }
 };

@@ -14,7 +14,14 @@ const deleteMovie = async(event) =>  {
           })
       };
   } catch(error) {
-      console.log(error);
+    return {
+        statusCode: 500,
+        body: JSON.stringify({
+            error: {
+                message: 'Error al eliminar registro'
+            }
+        })
+    };
   }    
 }
 module.exports = {

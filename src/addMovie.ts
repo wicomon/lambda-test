@@ -6,25 +6,38 @@ const addMovie = async(event) => {
 
     const { title, director, year } = JSON.parse(event.body);
 
-    const createAt = new Date();
+    const createdAt = new Date();
     const id = v4();
 
     const newMovie = {
         id,
-        title,
+        titulo: title,
         director,
-        year,
-        createAt
+        anio: year,
+        createdAt
     }
-    await dynamodb.put({
-        TableName: 'MoviesTable',
-        Item: newMovie
-    }).promise()
-
-    return {
-        statusCode: 200,
-        body: JSON.stringify(newMovie)
+    try {
+        await dynamodb.put({
+            TableName: 'MoviesTable',
+            Item: newMovie
+        }).promise()
+    
+        return {
+            statusCode: 200,
+            body: JSON.stringify(newMovie)
+        }
+        
+    } catch (error) {
+        return {
+            statusCode: 500,
+            body: JSON.stringify({
+                error: {
+                    message: 'Error al crear pelicula'
+                }
+            })
+        };
     }
+    
 }
 
 module.exports = {
