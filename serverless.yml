@@ -12,6 +12,9 @@ provider:
       Resource:
         - arn:aws:dynamodb:us-east-2:512345104267:table/MoviesTable
 
+plugins:
+  - serverless-plugin-typescript
+
 functions:
   api:
     handler: index.handler
@@ -30,6 +33,24 @@ functions:
     events:
       - httpApi:
           path: /movies
+          method: get
+  getFilms:
+    handler: src/swGetFilms.getFilms
+    events:
+      - httpApi:
+          path: /peliculas
+          method: get
+  getCharacters:
+    handler: src/swGetCharacters.getCharacters
+    events:
+      - httpApi:
+          path: /personajes
+          method: get
+  getSpecies:
+    handler: src/swGetSpecies.getSpecies
+    events:
+      - httpApi:
+          path: /especies
           method: get
   getMovie:
     handler: src/getMovie.getMovie

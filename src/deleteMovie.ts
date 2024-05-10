@@ -1,14 +1,14 @@
-const AWS = require('aws-sdk');
+import * as AWS from 'aws-sdk';
 const deleteMovie = async(event) =>  {
   try {
       const dynamodb = new AWS.DynamoDB.DocumentClient();
       const { id } = event.pathParameters;       
       const result = await dynamodb.delete({
-          TableName: 'MoviesTable',          
+          TableName: 'MoviesTable',
           Key: { id }
       }).promise();
       return {
-          status: 200,
+          statusCode: 200,
           body: JSON.stringify({
               message: 'Movie deleted successfully'
           })

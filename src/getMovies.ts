@@ -1,8 +1,8 @@
-const AWS = require('aws-sdk');
+import * as AWS from 'aws-sdk';
 const getMovies = async(event) =>  {
     try {
         const dynamodb = new AWS.DynamoDB.DocumentClient();
-        // scan es como hacer un fetch de toda la tabla
+
         const result = await dynamodb.scan({
             TableName: 'MoviesTable'
         }).promise();
