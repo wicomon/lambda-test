@@ -12,7 +12,7 @@ const updateMovie = async(event) =>  {
       const result = await dynamodb.update({
           TableName: 'MoviesTable',
 
-          UpdateExpression: 'set title = :title, director = :director',
+          UpdateExpression: 'set titulo = :title, director = :director',
           ExpressionAttributeValues: {                
               ':title': title,
               ':director': director
@@ -23,11 +23,11 @@ const updateMovie = async(event) =>  {
       }).promise();
 
       return {
-          status: 200,
-          body: JSON.stringify({
-              message: 'Movie updated successfully'
-          })
-      };
+        status: 200,
+        body: {
+            message: 'Movie updated successfully'
+        }
+    	};
   } catch(error) {
       console.log(error);
   }    

@@ -23,9 +23,11 @@ const addMovie = async(event) => {
         }).promise()
     
         return {
-            statusCode: 200,
-            body: JSON.stringify(newMovie)
-        }
+            status: 200,
+            body: {
+                message: 'Movie added successfully'
+            }
+        };
         
     } catch (error) {
         return {

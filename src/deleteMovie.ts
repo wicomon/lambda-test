@@ -8,10 +8,10 @@ const deleteMovie = async(event) =>  {
           Key: { id }
       }).promise();
       return {
-          statusCode: 200,
-          body: JSON.stringify({
-              message: 'Movie deleted successfully'
-          })
+        status: 200,
+        body: {
+            message: 'Movie deleted successfully'
+        }
       };
   } catch(error) {
     return {
