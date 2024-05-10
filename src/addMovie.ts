@@ -1,7 +1,7 @@
 const { v4 } = require('uuid');
 import * as AWS from 'aws-sdk';
 
-const addMovie = async(event) => {
+export const addMovie = async(event) => {
     const dynamodb = new AWS.DynamoDB.DocumentClient();
 
     const { title, director, year } = JSON.parse(event.body);
@@ -31,12 +31,10 @@ const addMovie = async(event) => {
         
     } catch (error) {
         return {
-            statusCode: 500,
-            body: JSON.stringify({
-                error: {
-                    message: 'Error al crear pelicula'
-                }
-            })
+            status: 500,
+            body: {
+                message: 'Error creating movie'
+            }
         };
     }
     
